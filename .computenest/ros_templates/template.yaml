@@ -276,7 +276,7 @@ Resources:
             wget '{{ computenest::file::JJGGu_quickstart-appsmith-docker-compose }}' -O /root/application/docker_compose.tar
             tar -xvf /root/application/docker_compose.tar -C /root/application
 
-            cat > /etc/systemd/system/docker-compose-app.service <<EOF
+            cat > /etc/systemd/system/JJGGu_quickstart-appsmith.service <<EOF
             [Unit]
             Description=Docker Compose Application Service
             Requires=docker.service
@@ -294,8 +294,10 @@ Resources:
             WantedBy=multi-user.target
             EOF
 
+            systemctl enable JJGGu_quickstart-appsmith
+
             
-            systemctl start docker-compose-app
+            systemctl start JJGGu_quickstart-appsmith
           - RegionId:
               Ref: ALIYUN::Region
 Outputs: 
