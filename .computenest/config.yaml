@@ -1,5 +1,5 @@
 Service:
-  RegionId: cn-hangzhou
+  RegionId: ap-southeast-1
   DeployType: ros
   OperationMetadata:
     StatusOperationConfigs:
@@ -12,40 +12,16 @@ Service:
   DeployMetadata:
     SupplierDeployMetadata:
       FileArtifactRelation:
-        '{{ computenest::file::linziqiaolzq_quickstart-appsmith-docker-compose }}':
+        '{{ computenest::file::JJGGu_quickstart-appsmith-docker-compose }}':
           ArtifactId: ${Artifact.Artifact_1.ArtifactId}
           ArtifactVersion: ${Artifact.Artifact_1.ArtifactVersion}
     TemplateConfigs:
       - Name: 单机版
         Url: 'ros_templates/template.yaml'
         AllowedRegions:
-          - cn-qingdao
-          - cn-beijing
-          - cn-zhangjiakou
-          - cn-huhehaote
-          - cn-wulanchabu
           - cn-hangzhou
           - cn-shanghai
-          - cn-nanjing
-          - cn-shenzhen
-          - cn-heyuan
-          - cn-guangzhou
-          - cn-fuzhou
-          - cn-wuhan-lr
-          - cn-chengdu
-          - cn-hongkong
-          - ap-northeast-1
-          - ap-northeast-2
-          - ap-southeast-1
-          - ap-southeast-3
-          - ap-southeast-6
-          - ap-southeast-5
-          - ap-southeast-7
-          - us-east-1
-          - us-west-1
-          - eu-west-1
-          - eu-central-1
-          - me-east-1
+          - cn-beijing
   ServiceType: private
   ServiceInfo:
     Locale: zh-CN
@@ -54,7 +30,20 @@ Service:
 Artifact:
   Artifact_1:
     ArtifactType: File
-    ArtifactName: linziqiaolzq_quickstart-appsmith-docker-compose
+    ArtifactName: JJGGu_quickstart-appsmith-docker-compose
     ArtifactProperty:
-      RegionId: cn-hangzhou
+      RegionId: ap-southeast-1
       Url: 'resources/artifact_resources/docker_compose.tar'
+  Artifact_2:
+    ArtifactType: AcrImage
+    ArtifactName: AcrImage-appsmith-appsmith-ce
+    ArtifactProperty:
+      RepoName: ${AcrImageBuilder.AcrImage_1.RepoName}
+      Tag: ${AcrImageBuilder.AcrImage_1.Tag}
+      RepoType: Public
+AcrImageBuilder:
+  AcrImage_1:
+    BuildType: DockerRepo
+    DockerRepoUrl: index.docker.io/appsmith/appsmith-ce:release
+    RepoName: appsmith/appsmith-ce
+    Tag: release
